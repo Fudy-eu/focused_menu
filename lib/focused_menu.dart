@@ -172,7 +172,7 @@ class FocusedMenuDetails extends StatelessWidget {
                           boxShadow: [const BoxShadow(color: Colors.black38, blurRadius: 10, spreadRadius: 1)]),
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    child: ListView.builder(
+                    child: ListView.separated(
                       itemCount: menuItems.length,
                       padding: EdgeInsets.zero,
                       physics: NeverScrollableScrollPhysics(),
