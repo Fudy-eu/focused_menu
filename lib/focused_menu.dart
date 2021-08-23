@@ -175,31 +175,32 @@ class FocusedMenuDetails extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: menuItems.length,
                       padding: EdgeInsets.zero,
-                      physics: BouncingScrollPhysics(),
+                      physics: NeverScrollableScrollPhysics(),
+                      separatorBuilder: (_, __) => const Divider(),
                       itemBuilder: (context, index) {
                         FocusedMenuItem item = menuItems[index];
                         Widget listItem = GestureDetector(
-                            onTap:
-                                () {
-                              Navigator.pop(context);
-                              item.onPressed();
-
-                            },
-                            child: Container(
-                                alignment: Alignment.center,
-                                margin: const EdgeInsets.only(bottom: 1),
-                                color: item.backgroundColor ?? Colors.white,
-                                height: itemExtent ?? 50.0,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 14),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      item.title,
-                                      if (item.trailingIcon != null) ...[item.trailingIcon!]
-                                    ],
-                                  ),
-                                )));
+                          onTap:
+                              () {
+                            Navigator.pop(context);
+                            item.onPressed();
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(bottom: 1),
+                            color: item.backgroundColor ?? Colors.white,
+                            height: itemExtent ?? 50.0,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 14),
+                              child: Row(
+                                children: <Widget>[
+                                  if (item.trailingIcon != null) ...[
+                                    item.trailingIcon!
+                                  ], const SizedBox(width: 16,), item.title,
+                                ],
+                              ),
+                            ),),);
                         if (animateMenu) {
                           return TweenAnimationBuilder(
                               builder: (context, dynamic value, child) {
